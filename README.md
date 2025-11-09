@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stripe + Next.js Tutorial
 
-## Getting Started
+### Packages
+- Stripe
+- TypeScript
+- zustand
+- shadcn/ui
+- Next.js
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Quick start
+
+1. Clone the repo and install deps (via GitHub CLI)
+
+```shell
+gh repo clone namecoder1/yt-stripe-tuto
+cd yt-stripe-tuto
+npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install Stripe package globally via Homebrew (macOS) and log in
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```shell
+brew install stripe/stripe-cli/stripe
+stripe login
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Insert Environment Variables into `.env.local`
 
-## Learn More
+```env
+STRIPE_SECRET_KEY=your_live_secret_key_here
+NEXT_PUBLIC_STRIPE_PUB_KEY=your_live_public_key_here
+STRIPE_WEBHOOK_SECRET=your_live_webhook_secret_here
 
-To learn more about Next.js, take a look at the following resources:
+STRIPE_SECRET_KEY_TEST=your_test_secret_key_here
+NEXT_PUBLIC_STRIPE_PUB_KEY_TEST=your_test_public_key_here
+STRIPE_WEBHOOK_SECRET_TEST=your_test_webhook_secret_here
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Start the Dev Server and the Stripe Server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```shell
+npm run dev
+npm run stripe
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
