@@ -100,6 +100,13 @@ export async function POST(req: NextRequest) {
         break
       }
 
+      case 'charge.failed': {
+        console.info('Event Type:', event.type)
+        const charge = event.data.object as Stripe.Charge
+        console.error('Charge failed for charge ID:', charge.id)
+        return NextResponse.json({ error: 'Charge failed, not possible to process payment' }, { status: 404 })
+      }
+
       case 'charge.refunded': {
         console.info('Event Type:', event.type)
         const refund = event.data.object as Stripe.Charge
@@ -126,6 +133,12 @@ export async function POST(req: NextRequest) {
       }
 
       case 'payment_intent.created': {
+        console.info('Event Type:', event.type)
+        const paymentIntent = event.data.object as Stripe.PaymentIntent
+        break
+      }
+
+      case 'payment_intent.payment_failed': {
         console.info('Event Type:', event.type)
         const paymentIntent = event.data.object as Stripe.PaymentIntent
         break
@@ -168,6 +181,13 @@ export async function POST(req: NextRequest) {
       }
 
       case 'customer.subscription.deleted': {
+        console.info('Event Type:', event.type)
+        console.log('‼️ Debug Log:', event)
+        const customer = event.data.object as Stripe.Customer
+        break
+      }
+
+      case 'customer.deleted': {
         console.info('Event Type:', event.type)
         console.log('‼️ Debug Log:', event)
         const customer = event.data.object as Stripe.Customer

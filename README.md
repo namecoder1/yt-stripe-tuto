@@ -44,3 +44,22 @@ npm run dev
 npm run stripe
 ```
 
+
+
+
+## Stripe Test Cards
+
+| Carta (numero)        |      Descrizione / comportamento simulato |  Esempio scadenza |    Esempio CVC | Risultato atteso / decline code          |
+| --------------------- | ----------------------------------------: | ----------------: | -------------: | ---------------------------------------- |
+| `4242 4242 4242 4242` |       Pagamento andato a buon fine (Visa) |           `12/34` |          `123` | Successo                                 |
+| `4000 0000 0000 0002` |                          Rifiuto generico |           `12/34` |          `123` | `card_declined` (generic_decline)        |
+| `4000 0000 0000 9995` |                       Fondi insufficienti |           `12/34` |          `123` | `card_declined` (insufficient_funds)     |
+| `4000 0000 0000 9987` |                            Carta smarrita |           `12/34` |          `123` | `card_declined` (lost_card)              |
+| `4000 0000 0000 9979` |                              Carta rubata |           `12/34` |          `123` | `card_declined` (stolen_card)            |
+| `4000 0000 0000 0069` |                             Carta scaduta | `12/20` (passata) |          `123` | `expired_card` / rifiuto per scadenza    |
+| `4000 0000 0000 0127` |                                CVC errato |           `12/34` | `000` (errato) | `incorrect_cvc`                          |
+| `4000 0000 0000 0119` |                    Errore di elaborazione |           `12/34` |          `123` | `processing_error`                       |
+| `4242 4242 4242 4241` |            Numero errato / invalid number |           `12/34` |          `123` | `incorrect_number`                       |
+| `4000 0000 0000 6975` | Superamento limite di velocità (velocity) |           `12/34` |          `123` | `card_declined` (card_velocity_exceeded) |
+
+
