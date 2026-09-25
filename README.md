@@ -1,4 +1,4 @@
-# Stripe + Next.js Tutorial
+# Stripe + Next.js Tutorial versione A
 
 ### Packages
 - Stripe
