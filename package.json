@@ -1,6 +1,7 @@
 {
   "name": "yt-stripe-tuto",
   "version": "0.1.0",
+  "packageManager": "pnpm@12.18.0",
   "private": false,
   "scripts": {
     "dev": "next dev --webpack",
